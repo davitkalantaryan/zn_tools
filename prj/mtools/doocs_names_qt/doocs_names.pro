@@ -15,13 +15,15 @@ win32{
     message("!!!!!!!!!!! GCCPATH=$$GCCPATH")
     QMAKE_CXXFLAGS += -std=c++11
     INCLUDEPATH += /afs/ifh.de/group/pitz/doocs/lib/include
+    LIBS += -L/afs/ifh.de/group/pitz/doocs/lib
 
 }
 
 
 message("!!!!!!!!!!! doocs_names.pro  creating MEX")
 include( $${PWD}/../../../contrib/matlab/prj/common/common_qt/matlab_matrix_without_libs_common.pri )
-LIBS += -ldl
+LIBS += -lDOOCSapi
+LIBS += -lldap
 
 #LIBS += -L$${PWD}/../../../sys/$$CODENAME/lib
 #LIBS += -lpitz_daq_data_matlab
