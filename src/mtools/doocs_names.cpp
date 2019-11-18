@@ -1,3 +1,25 @@
+
+
+#ifdef _WIN32
+#ifdef __cplusplus
+#define NOMINMAX
+#endif
+#include <WinSock2.h>
+#include <WS2tcpip.h>
+#include <Windows.h>
+#if !defined(uint) && !defined(uint_defined)
+#define uint_defined
+typedef UINT	uint;
+#endif
+
+#ifdef _MSC_VER
+#define DLL_EXPORT_SYM  _declspec(dllexport)
+#pragma warning (disable:4244)//warning C4244: 'return': conversion from 'float' to 'ValueType', possible loss of data
+#endif
+
+#else
+#endif
+
 #include <mex.h>
 #include <string.h>
 #include <eq_client.h>
@@ -42,8 +64,7 @@ void mexFunction( int /*a_nNumOuts*/, mxArray *a_Outputs[],
 
     size_t unStrLen = strlen(pcDoocsAddress);
 
-    if(pcDoocsAddress[unStrLen-1]!='/')
-    {
+    if(pcDoocsAddress[unStrLen-1]!='/'){
         pcDoocsAddress[unStrLen++] = '/';
         ++nNumber;
     }
@@ -52,8 +73,7 @@ void mexFunction( int /*a_nNumOuts*/, mxArray *a_Outputs[],
 
 
     nNumber = 3 - nNumber;
-    for(int i(0); i < nNumber;++i)
-    {
+    for(int i(0); i < nNumber;++i){
         pcDoocsAddress[unStrLen++] = '*';
         pcDoocsAddress[unStrLen++] = '/';
     }

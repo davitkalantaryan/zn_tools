@@ -17,6 +17,8 @@ prj/*/*_qt/moc_*.cc
 prj/*/*_qt/moc_*.c
 prj/tools/qt_udoocs_test_qt/qt_udoocs_test
 
+sys
+
 
 
 prj/*/build*
